@@ -1,0 +1,31 @@
+cat <<EOT >> .gitignore
+# Ignore Data
+data/
+data/raw
+data/processed
+
+*.zip
+*.tar.gz
+
+# Ignore Python specific files
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+.pytest_cache/
+
+# Ignore Environments
+.env
+.venv
+env/
+venv/
+/miniconda3/
+
+# Ignore IDE settings
+.vscode/
+.idea/
+
+# Ignore Large Models (GitHub has a 100MB limit)
+*.pth
+*.h5
+models/
+EOT
