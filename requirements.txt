@@ -1,7 +1,10 @@
 # --- Core Data Science & Math ---
-numpy>=1.21.0
+# Pinned to <2.0.0 for compatibility with current TensorFlow/PyTorch versions
+numpy>=1.21.0,<2.0.0
 pandas>=1.3.0
 scikit-learn>=1.0.0
+# Added based on your import: from tqdm import tqdm
+tqdm>=4.64.0 
 
 # --- Visualization ---
 matplotlib>=3.4.0
@@ -13,24 +16,20 @@ opencv-python>=4.5.0
 Pillow>=9.0.0
 
 # --- Deep Learning (PyTorch) ---
-# Note: These will install CPU versions by default on some systems.
-# For GPU support, see the specific command in the guide below.
 torch
 torchvision
 torchaudio
 
 # --- Deep Learning (TensorFlow) ---
-# Included because your current notebook uses it. 
-# Remove if you fully migrate to PyTorch.
 tensorflow>=2.10.0
 
 # --- Deployment & Web ---
 streamlit>=1.10.0
 fastapi>=0.78.0
 uvicorn[standard]>=0.17.0
-python-multipart  # Often needed for FastAPI file uploads
+python-multipart
 
 # --- Development Tools ---
 jupyter
 ipykernel
-pytest  # For testing
+pytest
