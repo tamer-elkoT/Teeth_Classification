@@ -1,0 +1,12 @@
+model_paths:
+  cnn: "models/Best_Model_CNN.keras"
+  efficientnet: "models/EfficientNetB0_Tuned.keras"
+
+classes:
+ - 'CaS'
+ - 'CoS'
+ - 'Gum'
+ - 'MC'
+ - 'OC'
+ - 'OLP'
+ - 'OT'
