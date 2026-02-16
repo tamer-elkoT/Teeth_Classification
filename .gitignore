@@ -29,3 +29,9 @@ venv/
 *.h5
 models/
 EOT
+
+assets
+Docs
+tests
+data
+architecture.md 
