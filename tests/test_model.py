@@ -2,7 +2,8 @@ from src.model_loader import get_model, models
 
 cnn_model = get_model("CNN")
 print(cnn_model)
-
+# To run the test script >> pytest tests/test_model.py -v
+# To run the print >> python3 -m tests.test_model
 def test_get_cnn_model():
     """Test that the CNN model loads successfully."""
     model = get_model("CNN")
