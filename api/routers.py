@@ -21,7 +21,28 @@ async def predict(
     model_name: AvailableModels = Form(...) # recieve the model name (CNN or EfficientnetB0)
 
 ):
+    """
+    Processes an uploaded dental image and returns the predicted tooth classification.
 
+    This endpoint accepts an image file and routes it to the selected AI model 
+    (CNN or EfficientNetB0) residing in the server's RAM. It performs strict 
+    MIME-type validation to ensure malicious files are rejected before processing.
+
+    Args:
+        image (UploadFile): The raw image file (JPEG/PNG) uploaded via multipart/form-data.
+        model_name (AvailableModels): The target AI model selected from the form dropdown.
+
+    Returns:
+        dict: A JSON response containing:
+            - filename (str): The original name of the uploaded file.
+            - prediction (str): The predicted class label (e.g., 'CaS', 'Gum').
+            - model_used (str): The name of the model that performed the inference.
+
+    Raises:
+        HTTPException (400): If the uploaded file is not a JPEG or PNG.
+        HTTPException (500): If the AI inference engine fails during execution.
+    """
+    # Check that input image has a proper format 
     if image.content_type not in ["image/jpeg", "image/png", "image/jpg"]:
         raise HTTPException(status_code=400, detail="Invalid file type. Please upload a JPEG or PNG or jpeg")
     
@@ -29,7 +50,8 @@ async def predict(
     image_bytes = await image.read()
 
     try:
-        prediction = predict_image(image_bytes, model_name)
+        # Make Predictions
+        prediction = predict_image(image_bytes, model_name.value)
         return {"filename": image.filename, "prediction": prediction, "model_used": model_name.value } # we set model_name.value because the model_name is a Enum object <AvailableModels.cnn: 'CNN'> we need the (CNN) by using (.value)
     
     except Exception as e:
