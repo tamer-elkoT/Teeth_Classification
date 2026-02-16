@@ -31,7 +31,9 @@ models/
 EOT
 
 assets
+assets/
 Docs
 tests
-data
+tests/
+data/raw/
 architecture.md 
