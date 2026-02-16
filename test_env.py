@@ -19,3 +19,6 @@ print("scikit-learn Version:", sklearn.__version__)
 print("OpenCv Version:", cv2.__version__)
 print("streamlit Version:", streamlit.__version__)
 print("Pillow Version:", Image.__version__)
+
+
+
