@@ -1,0 +1,26 @@
+# 1. Grab a mini-Linux computer that already has Python 3.10 installed
+# Go to the Docker Hub and download python 3.10
+FROM python:3.10-slim
+
+# 2. Create a folder inside the container called /app and move inside it
+WORKDIR /app
+
+# 3. Copy just the requirements file first (this is a caching trick for speed)
+# COPY >> takes two arguments [source_on_your_computer] [destination_inside_container]
+# The dot here means in the current folder which is /app
+COPY requirements.txt .
+
+# 4. Install all your AI and API libraries
+# This runs the standard Python installer inside the container.
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 5. Copy the rest of your project (src, models, config) into the container
+COPY . .
+
+# 6. Open a digital "hole" in the container so traffic can reach port 8000
+EXPOSE 8000
+
+# 7. The command to boot up the server
+# BUG FIX: You had "api.main:app", but your file is in "src/main.py"! I changed it to "src.main:app"
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
